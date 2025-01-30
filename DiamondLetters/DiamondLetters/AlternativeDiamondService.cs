@@ -22,12 +22,10 @@ public class AlternativeDiamondService
         int totalDiamondSize = diamondSize * lineLength;
 
         Span<char> diamond = stackalloc char[totalDiamondSize];
+        Span<char> line = stackalloc char[lineLength];
 
         int lineNumber = 0;
-
         char currentLetter = char.IsUpper(letter) ? 'A' : 'a';
-
-        Span<char> line = stackalloc char[lineLength];
 
         // go only through the first half, mirror the results and add in the middle line
         while (lineNumber <= diamondSize / 2)
@@ -37,36 +35,15 @@ public class AlternativeDiamondService
             int middleWhiteSpace = lineNumber == 0 ? 0 : 2 * currentLetterIndex - 1;
             int marginWhiteSpace = (diamondSize - lettersPerLine - middleWhiteSpace) / 2;
 
-            // left margin
-            line[..marginWhiteSpace].Fill(WhiteSpace);
+            BuildLine(line, marginWhiteSpace, middleWhiteSpace, currentLetter, lineNumber);
 
-            // letter
-            line[marginWhiteSpace] = currentLetter;
+            int upperHalfLineIndex = lineLength * lineNumber;
+            int lowerHalfLineIndex = totalDiamondSize - lineLength * (lineNumber + 1);
 
-            int index = marginWhiteSpace + 1;
-            if (lineNumber != 0)
-            {
-                // middle white space
-                line.Slice(index, middleWhiteSpace).Fill(WhiteSpace);
-
-                // letter
-                line[index + middleWhiteSpace] = currentLetter;
-                index += middleWhiteSpace + 1;
-            }
-
-            // right margin
-            line.Slice(index, marginWhiteSpace).Fill(WhiteSpace);
-            
-            // new line
-            line[index + marginWhiteSpace] = NewLine;
-
-            int firstDiamondIndex = lineLength * lineNumber;
-            int secondDiamondIndex = totalDiamondSize - lineLength * (lineNumber + 1);
-
-            line.TryCopyTo(diamond.Slice(firstDiamondIndex, lineLength));
+            line.TryCopyTo(diamond.Slice(upperHalfLineIndex, lineLength));
             if (lineNumber < diamondSize / 2)
             {
-                line.TryCopyTo(diamond.Slice(secondDiamondIndex, lineLength));
+                line.TryCopyTo(diamond.Slice(lowerHalfLineIndex, lineLength));
             }
 
             currentLetter++;
@@ -74,6 +51,32 @@ public class AlternativeDiamondService
         }
 
         return diamond.Slice(0, totalDiamondSize - 1).ToString();
+    }
+
+    private static void BuildLine(Span<char> line, int margin, int middle, char letter, int lineNumber)
+    {
+        // left margin
+        line[..margin].Fill(WhiteSpace);
+
+        // letter
+        line[margin] = letter;
+
+        int index = margin + 1;
+        if (lineNumber != 0)
+        {
+            // middle white space
+            line.Slice(index, middle).Fill(WhiteSpace);
+
+            // letter
+            line[index + middle] = letter;
+            index += middle + 1;
+        }
+
+        // right margin
+        line.Slice(index, margin).Fill(WhiteSpace);
+
+        // new line
+        line[index + margin] = NewLine;
     }
 
     private static int? GetAlphabetIndex(char letter)
