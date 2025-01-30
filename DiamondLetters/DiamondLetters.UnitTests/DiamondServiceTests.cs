@@ -9,20 +9,20 @@ public class DiamondServiceTests
     [Fact]
     public void CreateDiamond_OnInvalidCharacter_ThrowInvalidLetterException()
     {
-        Assert.Throws<InvalidLetterException>(() => diamondService.GetDiamondRepresentation('1'));
+        Assert.Throws<InvalidLetterException>(() => diamondService.CreateDiamond('1'));
     }
 
     [Fact]
     public void CreateDiamond_OnCharacterA_ReturnsTheSameCharacterAsString()
     {
-        string result = diamondService.GetDiamondRepresentation('A');
+        string result = diamondService.CreateDiamond('A');
         Assert.Equal("A", result);
     }
 
     [Fact]
     public void CreateDiamond_OnLowerCharacterA_ReturnsTheSameCharacterAsString()
     {
-        string result = diamondService.GetDiamondRepresentation('a');
+        string result = diamondService.CreateDiamond('a');
         Assert.Equal("a", result);
     }
 
@@ -34,7 +34,7 @@ public class DiamondServiceTests
 B B
  A ".TrimStart('\n');
 
-        string result = diamondService.GetDiamondRepresentation('B');
+        string result = diamondService.CreateDiamond('B');
         Assert.Equal(expectedDiamond.Length, result.Length);
         Assert.Equal(expectedDiamond, result);
     }
@@ -49,7 +49,7 @@ C   C
  B B 
   A  ".TrimStart('\n');
 
-        string result = diamondService.GetDiamondRepresentation('C');
+        string result = diamondService.CreateDiamond('C');
         Assert.Equal(expectedDiamond.Length, result.Length);
         Assert.Equal(expectedDiamond, result);
     }
@@ -111,7 +111,7 @@ Z                                                 Z
                          A                         ".TrimStart('\n');
 
 
-        string result = diamondService.GetDiamondRepresentation('Z');
+        string result = diamondService.CreateDiamond('Z');
         Assert.Equal(expectedDiamond.Length, result.Length);
         Assert.Equal(expectedDiamond, result);
     }
@@ -130,7 +130,7 @@ e       e
    b b   
     a    ".TrimStart('\n');
 
-        string result = diamondService.GetDiamondRepresentation('e');
+        string result = diamondService.CreateDiamond('e');
         // Assert.Equal(expectedDiamond.Length, result.Length);
         Assert.Equal(expectedDiamond, result);
     }

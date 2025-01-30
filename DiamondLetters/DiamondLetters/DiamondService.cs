@@ -7,7 +7,7 @@ public class DiamondService
 {
     private const char WhiteSpace = ' ';
 
-    public string GetDiamondRepresentation(char letter)
+    public string CreateDiamond(char letter)
     {
         int alphabetIndex = GetAlphabetIndex(letter)
                             ?? throw new InvalidLetterException(letter);
