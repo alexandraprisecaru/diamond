@@ -4,7 +4,7 @@ public class DiamondService
 {
     public string GetDiamondRepresentation(char letter)
     {
-        if (letter == 'A')
+        if (letter == 'A' || letter == 'a')
         {
             return letter.ToString();
         }

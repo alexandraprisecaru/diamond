@@ -16,4 +16,11 @@ public class DiamondServiceTests
         var result = diamondService.GetDiamondRepresentation('A');
         Assert.Equal("A", result);
     }
+    
+    [Fact]
+    public void CreateDiamond_OnLowerCharacterA_ReturnsTheSameCharacterAsString()
+    {
+        var result = diamondService.GetDiamondRepresentation('a');
+        Assert.Equal("a", result);
+    }
 }
