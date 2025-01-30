@@ -6,7 +6,7 @@ using DiamondLetters.Exceptions;
 public class DiamondService
 {
     private const char WhiteSpace = ' ';
-    
+
     public string GetDiamondRepresentation(char letter)
     {
         int alphabetIndex = GetAlphabetIndex(letter)
@@ -22,7 +22,7 @@ public class DiamondService
 
         int lineNumber = 0;
 
-        char alphabetLetter = 'A';
+        char alphabetLetter = char.IsUpper(letter) ? 'A' : 'a';
         while (lineNumber < diamondSize)
         {
             int currentCharacterIndex = GetAlphabetIndex(alphabetLetter)!.Value;

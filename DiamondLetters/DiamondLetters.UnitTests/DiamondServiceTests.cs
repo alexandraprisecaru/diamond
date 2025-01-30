@@ -53,7 +53,7 @@ C   C
         Assert.Equal(expectedDiamond.Length, result.Length);
         Assert.Equal(expectedDiamond, result);
     }
-    
+
     [Fact]
     public void CreateDiamond_OnCharacterZ_ReturnsDiamondThatHasZInTheMiddle()
     {
@@ -113,6 +113,25 @@ Z                                                 Z
 
         string result = diamondService.GetDiamondRepresentation('Z');
         Assert.Equal(expectedDiamond.Length, result.Length);
+        Assert.Equal(expectedDiamond, result);
+    }
+
+    [Fact]
+    public void CreateDiamond_OnLowerCharacter_ReturnsDiamondThatHasLowerCharacters()
+    {
+        string expectedDiamond = @"
+    a    
+   b b   
+  c   c  
+ d     d 
+e       e
+ d     d 
+  c   c  
+   b b   
+    a    ".TrimStart('\n');
+
+        string result = diamondService.GetDiamondRepresentation('e');
+        // Assert.Equal(expectedDiamond.Length, result.Length);
         Assert.Equal(expectedDiamond, result);
     }
 }
