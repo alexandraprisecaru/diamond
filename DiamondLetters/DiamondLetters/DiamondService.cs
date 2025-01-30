@@ -22,31 +22,31 @@ public class DiamondService
 
         int lineNumber = 0;
 
-        char alphabetLetter = char.IsUpper(letter) ? 'A' : 'a';
+        char currentLetter = char.IsUpper(letter) ? 'A' : 'a';
         while (lineNumber < diamondSize)
         {
-            int currentCharacterIndex = GetAlphabetIndex(alphabetLetter)!.Value;
+            int currentLetterIndex = GetAlphabetIndex(currentLetter)!.Value;
             int lettersPerLine = lineNumber == 0 || lineNumber == diamondSize - 1 ? 1 : 2;
-            int middleWhiteSpace = lineNumber == 0 || lineNumber == diamondSize - 1 ? 0 : 2 * currentCharacterIndex - 1;
+            int middleWhiteSpace = lineNumber == 0 || lineNumber == diamondSize - 1 ? 0 : 2 * currentLetterIndex - 1;
             int marginWhiteSpace = (diamondSize - lettersPerLine - middleWhiteSpace) / 2;
 
             sb.Append(WhiteSpace, marginWhiteSpace);
-            sb.Append(alphabetLetter);
+            sb.Append(currentLetter);
 
             if (lineNumber > 0 && lineNumber < diamondSize - 1)
             {
                 sb.Append(WhiteSpace, middleWhiteSpace);
-                sb.Append(alphabetLetter);
+                sb.Append(currentLetter);
             }
 
             sb.Append(WhiteSpace, marginWhiteSpace);
             if (lineNumber >= diamondSize / 2)
             {
-                alphabetLetter--;
+                currentLetter--;
             }
             else
             {
-                alphabetLetter++;
+                currentLetter++;
             }
 
             if (lineNumber < diamondSize - 1)
