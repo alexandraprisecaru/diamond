@@ -35,6 +35,7 @@ public class DiamondService
             AppendDiamondLine(sb, marginWhiteSpace, middleWhiteSpace, lineNumber, diamondSize, currentLetter);
 
             if (lineNumber >= diamondSize / 2)
+                // past the middle line
                 currentLetter--;
             else
                 currentLetter++;
