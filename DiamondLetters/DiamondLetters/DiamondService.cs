@@ -1,43 +1,46 @@
 namespace DiamondLetters;
 
 using System.Text;
+using DiamondLetters.Exceptions;
 
 public class DiamondService
 {
+    private const char WhiteSpace = ' ';
+    
     public string GetDiamondRepresentation(char letter)
     {
         int alphabetIndex = GetAlphabetIndex(letter)
-                            ?? throw new ArgumentException("Character is not a letter");
+                            ?? throw new InvalidLetterException(letter);
 
         if (alphabetIndex == 0)
         {
             return letter.ToString();
         }
 
-        int matrixSize = 2 * alphabetIndex + 1;
-        StringBuilder sb = new StringBuilder();
+        int diamondSize = 2 * alphabetIndex + 1;
+        var sb = new StringBuilder();
 
         int lineNumber = 0;
 
         char alphabetLetter = 'A';
-        while (lineNumber < matrixSize)
+        while (lineNumber < diamondSize)
         {
             int currentCharacterIndex = GetAlphabetIndex(alphabetLetter)!.Value;
-            int lettersPerLine = lineNumber == 0 || lineNumber == matrixSize - 1 ? 1 : 2;
-            int middleWhiteSpace = lineNumber == 0 || lineNumber == matrixSize - 1 ? 0 : 2 * currentCharacterIndex - 1;
-            int marginWhiteSpace = (matrixSize - lettersPerLine - middleWhiteSpace) / 2;
+            int lettersPerLine = lineNumber == 0 || lineNumber == diamondSize - 1 ? 1 : 2;
+            int middleWhiteSpace = lineNumber == 0 || lineNumber == diamondSize - 1 ? 0 : 2 * currentCharacterIndex - 1;
+            int marginWhiteSpace = (diamondSize - lettersPerLine - middleWhiteSpace) / 2;
 
-            sb.Append(' ', marginWhiteSpace);
+            sb.Append(WhiteSpace, marginWhiteSpace);
             sb.Append(alphabetLetter);
 
-            if (lineNumber > 0 && lineNumber < matrixSize - 1)
+            if (lineNumber > 0 && lineNumber < diamondSize - 1)
             {
-                sb.Append(' ', middleWhiteSpace);
+                sb.Append(WhiteSpace, middleWhiteSpace);
                 sb.Append(alphabetLetter);
             }
 
-            sb.Append(' ', marginWhiteSpace);
-            if (lineNumber >= matrixSize / 2)
+            sb.Append(WhiteSpace, marginWhiteSpace);
+            if (lineNumber >= diamondSize / 2)
             {
                 alphabetLetter--;
             }
@@ -46,7 +49,7 @@ public class DiamondService
                 alphabetLetter++;
             }
 
-            if (lineNumber < matrixSize - 1)
+            if (lineNumber < diamondSize - 1)
             {
                 sb.AppendLine();
             }

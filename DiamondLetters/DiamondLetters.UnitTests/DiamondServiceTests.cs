@@ -1,13 +1,15 @@
 namespace DiamondLetters.UnitTests;
 
+using DiamondLetters.Exceptions;
+
 public class DiamondServiceTests
 {
     readonly DiamondService diamondService = new();
 
     [Fact]
-    public void CreateDiamond_OnInvalidCharacter_ThrowArgumentException()
+    public void CreateDiamond_OnInvalidCharacter_ThrowInvalidLetterException()
     {
-        Assert.Throws<ArgumentException>(() => diamondService.GetDiamondRepresentation('1'));
+        Assert.Throws<InvalidLetterException>(() => diamondService.GetDiamondRepresentation('1'));
     }
 
     [Fact]
