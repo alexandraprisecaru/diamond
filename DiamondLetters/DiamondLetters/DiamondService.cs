@@ -17,37 +17,27 @@ public class DiamondService
             return letter.ToString();
         }
 
-        int diamondSize = 2 * alphabetIndex + 1;
         var sb = new StringBuilder();
 
         int lineNumber = 0;
-
         char currentLetter = char.IsUpper(letter) ? 'A' : 'a';
+        int diamondSize = 2 * alphabetIndex + 1;
+
         while (lineNumber < diamondSize)
         {
+            bool isBoundary = lineNumber == 0 || lineNumber == diamondSize - 1;
+
             int currentLetterIndex = GetAlphabetIndex(currentLetter)!.Value;
-            int lettersPerLine = lineNumber == 0 || lineNumber == diamondSize - 1 ? 1 : 2;
-            int middleWhiteSpace = lineNumber == 0 || lineNumber == diamondSize - 1 ? 0 : 2 * currentLetterIndex - 1;
+            int lettersPerLine = isBoundary ? 1 : 2;
+            int middleWhiteSpace = isBoundary ? 0 : 2 * currentLetterIndex - 1;
             int marginWhiteSpace = (diamondSize - lettersPerLine - middleWhiteSpace) / 2;
 
-            sb.Append(WhiteSpace, marginWhiteSpace);
-            sb.Append(currentLetter);
+            AppendDiamondLine(sb, marginWhiteSpace, middleWhiteSpace, lineNumber, diamondSize, currentLetter);
 
-            if (lineNumber > 0 && lineNumber < diamondSize - 1)
-            {
-                sb.Append(WhiteSpace, middleWhiteSpace);
-                sb.Append(currentLetter);
-            }
-
-            sb.Append(WhiteSpace, marginWhiteSpace);
             if (lineNumber >= diamondSize / 2)
-            {
                 currentLetter--;
-            }
             else
-            {
                 currentLetter++;
-            }
 
             if (lineNumber < diamondSize - 1)
             {
@@ -58,6 +48,20 @@ public class DiamondService
         }
 
         return sb.ToString();
+    }
+
+    private static void AppendDiamondLine(StringBuilder sb, int margin, int middle, int lineNumber, int diamondSize, char letter)
+    {
+        sb.Append(WhiteSpace, margin);
+        sb.Append(letter);
+
+        if (lineNumber > 0 && lineNumber < diamondSize - 1)
+        {
+            sb.Append(WhiteSpace, middle);
+            sb.Append(letter);
+        }
+
+        sb.Append(WhiteSpace, margin);
     }
 
     private static int? GetAlphabetIndex(char letter)

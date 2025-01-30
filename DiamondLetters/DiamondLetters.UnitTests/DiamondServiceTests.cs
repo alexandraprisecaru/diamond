@@ -4,8 +4,8 @@ using DiamondLetters.Exceptions;
 
 public class DiamondServiceTests
 {
-    // readonly DiamondService diamondService = new();
-    readonly AlternativeDiamondService diamondService = new();
+    readonly DiamondService diamondService = new();
+    // readonly AlternativeDiamondService diamondService = new();
 
     [Fact]
     public void CreateDiamond_OnInvalidCharacter_ThrowInvalidLetterException()
@@ -36,7 +36,7 @@ B B
  A ".TrimStart('\n');
 
         string result = diamondService.CreateDiamond('B');
-        // Assert.Equal(expectedDiamond.Length, result.Length);
+        Assert.Equal(expectedDiamond.Length, result.Length);
         Assert.Equal(expectedDiamond, result);
     }
 
@@ -132,7 +132,7 @@ e       e
     a    ".TrimStart('\n');
 
         string result = diamondService.CreateDiamond('e');
-        // Assert.Equal(expectedDiamond.Length, result.Length);
+        Assert.Equal(expectedDiamond.Length, result.Length);
         Assert.Equal(expectedDiamond, result);
     }
 }
