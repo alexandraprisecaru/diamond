@@ -22,8 +22,9 @@ public class DiamondService
         char alphabetLetter = 'A';
         while (lineNumber < matrixSize)
         {
+            int currentCharacterIndex = GetAlphabetIndex(alphabetLetter)!.Value;
             int lettersPerLine = lineNumber == 0 || lineNumber == matrixSize - 1 ? 1 : 2;
-            int middleWhiteSpace = lineNumber == 0 || lineNumber == matrixSize - 1 ? 0 : 2 * lineNumber - 1;
+            int middleWhiteSpace = lineNumber == 0 || lineNumber == matrixSize - 1 ? 0 : 2 * currentCharacterIndex - 1;
             int marginWhiteSpace = (matrixSize - lettersPerLine - middleWhiteSpace) / 2;
 
             sb.Append(' ', marginWhiteSpace);
@@ -36,8 +37,6 @@ public class DiamondService
             }
 
             sb.Append(' ', marginWhiteSpace);
-            sb.AppendLine();
-
             if (lineNumber >= matrixSize / 2)
             {
                 alphabetLetter--;
@@ -45,6 +44,11 @@ public class DiamondService
             else
             {
                 alphabetLetter++;
+            }
+
+            if (lineNumber < matrixSize - 1)
+            {
+                sb.AppendLine();
             }
 
             lineNumber++;
