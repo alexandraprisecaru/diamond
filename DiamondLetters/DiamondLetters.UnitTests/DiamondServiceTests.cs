@@ -13,14 +13,24 @@ public class DiamondServiceTests
     [Fact]
     public void CreateDiamond_OnCharacterA_ReturnsTheSameCharacterAsString()
     {
-        var result = diamondService.GetDiamondRepresentation('A');
+        string result = diamondService.GetDiamondRepresentation('A');
         Assert.Equal("A", result);
     }
-    
+
     [Fact]
     public void CreateDiamond_OnLowerCharacterA_ReturnsTheSameCharacterAsString()
     {
-        var result = diamondService.GetDiamondRepresentation('a');
+        string result = diamondService.GetDiamondRepresentation('a');
         Assert.Equal("a", result);
+    }
+
+    [Fact]
+    public void CreateDiamond_OnCharacterB_ReturnsDiamondThatHasBInTheMiddle()
+    {
+        const string bDiamond = " A \nB B\n A \n";
+
+        string result = diamondService.GetDiamondRepresentation('B');
+        Assert.Equal(bDiamond.Length, result.Length);
+        Assert.Equal(bDiamond, result);
     }
 }
