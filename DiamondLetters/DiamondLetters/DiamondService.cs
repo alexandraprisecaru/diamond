@@ -4,16 +4,24 @@ public class DiamondService
 {
     public string GetDiamondRepresentation(char letter)
     {
-        if (letter == 'A' || letter == 'a')
+        int alphabetIndex = GetAlphabetIndex(letter)
+                            ?? throw new ArgumentException("Character is not a letter");
+
+        if (alphabetIndex == 0)
         {
             return letter.ToString();
         }
-        
-        if (!char.IsLetter(letter))
-        {
-            throw new ArgumentException("Character is not a letter");
-        }
 
         return null!;
+    }
+
+    private static int? GetAlphabetIndex(char letter)
+    {
+        if (char.IsLetter(letter))
+        {
+            return char.ToUpperInvariant(letter) - 'A';
+        }
+
+        return null;
     }
 }
