@@ -17,6 +17,7 @@ public class DiamondServiceTests
     public void CreateDiamond_OnCharacterA_ReturnsTheSameCharacterAsString()
     {
         string result = diamondService.CreateDiamond('A');
+        
         Assert.Equal("A", result);
     }
 
@@ -24,6 +25,7 @@ public class DiamondServiceTests
     public void CreateDiamond_OnLowerCharacterA_ReturnsTheSameCharacterAsString()
     {
         string result = diamondService.CreateDiamond('a');
+        
         Assert.Equal("a", result);
     }
 
@@ -36,6 +38,7 @@ B B
  A ".TrimStart('\n');
 
         string result = diamondService.CreateDiamond('B');
+        
         Assert.Equal(expectedDiamond.Length, result.Length);
         Assert.Equal(expectedDiamond, result);
     }
@@ -51,6 +54,7 @@ C   C
   A  ".TrimStart('\n');
 
         string result = diamondService.CreateDiamond('C');
+        
         Assert.Equal(expectedDiamond.Length, result.Length);
         Assert.Equal(expectedDiamond, result);
     }
@@ -113,6 +117,7 @@ Z                                                 Z
 
 
         string result = diamondService.CreateDiamond('Z');
+
         Assert.Equal(expectedDiamond.Length, result.Length);
         Assert.Equal(expectedDiamond, result);
     }
@@ -132,6 +137,7 @@ e       e
     a    ".TrimStart('\n');
 
         string result = diamondService.CreateDiamond('e');
+
         Assert.Equal(expectedDiamond.Length, result.Length);
         Assert.Equal(expectedDiamond, result);
     }

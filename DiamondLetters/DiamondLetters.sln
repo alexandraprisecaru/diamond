@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiamondLetters", "DiamondLe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiamondLetters.UnitTests", "DiamondLetters.UnitTests\DiamondLetters.UnitTests.csproj", "{D900F67B-34A8-4892-B42B-695A68AFC692}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiamondLetters.Console", "DiamondLetters.Console\DiamondLetters.Console.csproj", "{D3CAD92B-6A22-46F2-97E7-FCDFE45CAE9F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{D900F67B-34A8-4892-B42B-695A68AFC692}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D900F67B-34A8-4892-B42B-695A68AFC692}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D900F67B-34A8-4892-B42B-695A68AFC692}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3CAD92B-6A22-46F2-97E7-FCDFE45CAE9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3CAD92B-6A22-46F2-97E7-FCDFE45CAE9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3CAD92B-6A22-46F2-97E7-FCDFE45CAE9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3CAD92B-6A22-46F2-97E7-FCDFE45CAE9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
